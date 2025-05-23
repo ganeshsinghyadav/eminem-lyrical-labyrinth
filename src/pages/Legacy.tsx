@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,6 +11,7 @@ interface TimelineEvent {
   category: 'music' | 'personal' | 'controversy' | 'achievement' | 'business';
   impact: 'low' | 'medium' | 'high' | 'legendary';
   details: string;
+  image?: string;
 }
 
 const Legacy = () => {
@@ -26,7 +26,8 @@ const Legacy = () => {
       description: 'Born in St. Joseph, Missouri, to Debbie Mathers.',
       category: 'personal',
       impact: 'high',
-      details: 'Born on October 17, 1972, Marshall would face a turbulent childhood moving between Missouri and Detroit. His father abandoned the family when he was young, leaving his mother to raise him alone.'
+      details: 'Born on October 17, 1972, Marshall would face a turbulent childhood moving between Missouri and Detroit. His father abandoned the family when he was young, leaving his mother to raise him alone.',
+      image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     },
     {
       id: '2',
@@ -35,7 +36,8 @@ const Legacy = () => {
       description: 'Self-funded debut album with only 1,000 copies sold.',
       category: 'music',
       impact: 'medium',
-      details: 'Though commercially unsuccessful, Infinite showcased Eminem\'s technical skills and laid the groundwork for his future success. The album\'s failure motivated him to develop the Slim Shady persona.'
+      details: 'Though commercially unsuccessful, Infinite showcased Eminem\'s technical skills and laid the groundwork for his future success. The album\'s failure motivated him to develop the Slim Shady persona.',
+      image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     },
     {
       id: '3',
@@ -44,7 +46,8 @@ const Legacy = () => {
       description: 'The birth of the Slim Shady alter ego.',
       category: 'music',
       impact: 'legendary',
-      details: 'This EP caught the attention of Interscope Records and Dr. Dre. The darker, more controversial persona would become Eminem\'s ticket to mainstream success.'
+      details: 'This EP caught the attention of Interscope Records and Dr. Dre. The darker, more controversial persona would become Eminem\'s ticket to mainstream success.',
+      image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     },
     {
       id: '4',
@@ -53,7 +56,8 @@ const Legacy = () => {
       description: 'Major label debut goes triple platinum.',
       category: 'music',
       impact: 'legendary',
-      details: 'Featuring hits like "My Name Is" and "Guilty Conscience," this album established Eminem as a force in hip-hop and sparked massive controversy for its content.'
+      details: 'Featuring hits like "My Name Is" and "Guilty Conscience," this album established Eminem as a force in hip-hop and sparked massive controversy for its content.',
+      image: 'https://i.scdn.co/image/ab67616d0000b273226c4dd760c7186c3e79da0e'
     },
     {
       id: '5',
@@ -62,7 +66,8 @@ const Legacy = () => {
       description: 'Fastest-selling rap album in history at the time.',
       category: 'music',
       impact: 'legendary',
-      details: 'Sold 1.76 million copies in its first week. Contains classics like "The Real Slim Shady" and "Stan." The album cemented Eminem\'s status as rap\'s biggest star.'
+      details: 'Sold 1.76 million copies in its first week. Contains classics like "The Real Slim Shady" and "Stan." The album cemented Eminem\'s status as rap\'s biggest star.',
+      image: 'https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4'
     },
     {
       id: '6',
@@ -71,7 +76,8 @@ const Legacy = () => {
       description: 'Performs with Elton John amid LGBTQ+ criticism.',
       category: 'controversy',
       impact: 'high',
-      details: 'Despite protests and boycotts over his lyrics, Eminem performed "Stan" with Elton John at the Grammy Awards, showcasing a more complex side of his artistry.'
+      details: 'Despite protests and boycotts over his lyrics, Eminem performed "Stan" with Elton John at the Grammy Awards, showcasing a more complex side of his artistry.',
+      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     },
     {
       id: '7',
@@ -80,7 +86,8 @@ const Legacy = () => {
       description: 'Stars in semi-autobiographical film.',
       category: 'achievement',
       impact: 'legendary',
-      details: 'The film grossed over $240 million worldwide and earned Eminem an Academy Award for "Lose Yourself" - the first rap song to win an Oscar.'
+      details: 'The film grossed over $240 million worldwide and earned Eminem an Academy Award for "Lose Yourself" - the first rap song to win an Oscar.',
+      image: 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     },
     {
       id: '8',
@@ -89,7 +96,8 @@ const Legacy = () => {
       description: 'Best friend and D12 member killed in Detroit.',
       category: 'personal',
       impact: 'legendary',
-      details: 'The death of his childhood friend DeShaun Holton (Proof) devastated Eminem and led to depression, drug addiction, and a hiatus from music.'
+      details: 'The death of his childhood friend DeShaun Holton (Proof) devastated Eminem and led to depression, drug addiction, and a hiatus from music.',
+      image: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     },
     {
       id: '9',
@@ -98,7 +106,8 @@ const Legacy = () => {
       description: 'Returns from hiatus with renewed focus.',
       category: 'music',
       impact: 'high',
-      details: 'After battling addiction and depression, Eminem returned with "Relapse" and then "Recovery," showing his evolution as both an artist and person.'
+      details: 'After battling addiction and depression, Eminem returned with "Relapse" and then "Recovery," showing his evolution as both an artist and person.',
+      image: 'https://i.scdn.co/image/ab67616d0000b2738e6a8d1e1db8fdc71b1e9f3b'
     },
     {
       id: '10',
@@ -107,7 +116,8 @@ const Legacy = () => {
       description: 'Sets Guinness World Record for most words in a song.',
       category: 'achievement',
       impact: 'legendary',
-      details: 'The song contains 1,560 words in 6 minutes and 4 seconds, with Eminem rapping 97 words in 15 seconds at the song\'s fastest point.'
+      details: 'The song contains 1,560 words in 6 minutes and 4 seconds, with Eminem rapping 97 words in 15 seconds at the song\'s fastest point.',
+      image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     },
     {
       id: '11',
@@ -116,7 +126,8 @@ const Legacy = () => {
       description: 'Anti-Trump freestyle "The Storm" goes viral.',
       category: 'controversy',
       impact: 'high',
-      details: 'The 4.5-minute freestyle attacking Donald Trump garnered over 60 million views and sparked nationwide political discussion.'
+      details: 'The 4.5-minute freestyle attacking Donald Trump garnered over 60 million views and sparked nationwide political discussion.',
+      image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     },
     {
       id: '12',
@@ -125,7 +136,8 @@ const Legacy = () => {
       description: 'Surprise album debuts at #1.',
       category: 'music',
       impact: 'high',
-      details: 'Released without warning, the album proved Eminem could still dominate charts and culture, featuring collaborations with young artists and addressing current events.'
+      details: 'Released without warning, the album proved Eminem could still dominate charts and culture, featuring collaborations with young artists and addressing current events.',
+      image: 'https://i.scdn.co/image/ab67616d0000b2734f24ca7da880d743ee5e97f8'
     }
   ];
 
@@ -221,6 +233,16 @@ const Legacy = () => {
                   className={`bg-em-gray border-em-red/20 hover:border-em-red transition-all duration-300 cursor-pointer p-6 transform ${getImpactSize(event.impact)} hover:scale-105`}
                   onClick={() => setSelectedEvent(event)}
                 >
+                  {event.image && (
+                    <div className="w-full h-32 mb-4 rounded overflow-hidden">
+                      <img 
+                        src={event.image} 
+                        alt={event.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  
                   <div className="mb-3">
                     <div className="text-2xl font-bold text-em-red mb-1">{event.year}</div>
                     <Badge className={`border ${getCategoryColor(event.category)} text-xs`}>
@@ -263,7 +285,7 @@ const Legacy = () => {
         {/* Event Details Modal */}
         {selectedEvent && (
           <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-            <Card className="bg-em-gray border-em-red max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <Card className="bg-em-gray border-em-red max-w-3xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-8">
                 <div className="flex justify-between items-start mb-6">
                   <div>
@@ -296,6 +318,16 @@ const Legacy = () => {
                     ✕
                   </Button>
                 </div>
+
+                {selectedEvent.image && (
+                  <div className="w-full h-64 mb-6 rounded-lg overflow-hidden">
+                    <img 
+                      src={selectedEvent.image} 
+                      alt={selectedEvent.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
 
                 <div className="mb-6">
                   <p className="text-gray-300 text-lg mb-4">{selectedEvent.description}</p>

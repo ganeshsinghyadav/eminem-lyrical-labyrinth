@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -23,15 +24,26 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section with Real Eminem Image */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-em-dark via-em-gray to-em-dark"></div>
-        <div className="absolute inset-0 opacity-50" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF0000' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        <div 
+          className="absolute inset-0 opacity-30 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
           <div className="mb-8">
+            <div className="w-48 h-48 mx-auto mb-8 rounded-full overflow-hidden border-4 border-em-red shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                alt="Eminem Portrait"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <h1 className="text-6xl md:text-8xl font-bold text-white graffiti-text animate-slide-up">
               <span className="text-em-red animate-glow">EMINEM</span>
             </h1>
@@ -123,7 +135,7 @@ const Home = () => {
             <Card className="bg-em-red/10 border-em-red hover:bg-em-red/20 transition-all duration-300 group cursor-pointer">
               <div className="p-6 text-center">
                 <div className="text-4xl mb-4">🔥</div>
-                <h3 className="text-xl font-bold text-em-red mb-2">Marshall Matters</h3>
+                <h3 className="text-xl font-bold text-em-red mb-2">Marshall Mathers</h3>
                 <p className="text-gray-300">The man behind the mask</p>
               </div>
             </Card>

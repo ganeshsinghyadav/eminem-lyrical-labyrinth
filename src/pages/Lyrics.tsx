@@ -18,6 +18,7 @@ interface Song {
   year: number;
   lyrics: LyricLine[];
   themes: string[];
+  spotifyId: string;
 }
 
 const Lyrics = () => {
@@ -33,14 +34,14 @@ const Lyrics = () => {
       album: '8 Mile Soundtrack',
       year: 2002,
       themes: ['motivation', 'struggle', 'determination'],
+      spotifyId: '5Z01UMMf7V1o0MzF86s6WJ',
       lyrics: [
         { text: "Look, if you had one shot, or one opportunity", isPunchline: false, theme: 'motivation' },
         { text: "To seize everything you ever wanted in one moment", isPunchline: false, theme: 'motivation' },
         { text: "Would you capture it or just let it slip?", isPunchline: true, theme: 'motivation' },
         { text: "His palms are sweaty, knees weak, arms are heavy", isPunchline: false, theme: 'struggle' },
         { text: "There's vomit on his sweater already, mom's spaghetti", isPunchline: true, theme: 'struggle' },
-        { text: "He's nervous, but on the surface he looks calm and ready", isPunchline: false, theme: 'determination' },
-        { text: "To drop bombs, but he keeps on forgetting", isPunchline: true, theme: 'struggle' }
+        { text: "He's nervous, but on the surface he looks calm and ready", isPunchline: false, theme: 'determination' }
       ]
     },
     {
@@ -49,32 +50,59 @@ const Lyrics = () => {
       album: 'The Marshall Mathers LP',
       year: 2000,
       themes: ['controversy', 'humor', 'fame'],
+      spotifyId: '3yfqSUWxFvZELEM4PmlwIR',
       lyrics: [
         { text: "Will the real Slim Shady please stand up?", isPunchline: true, theme: 'fame' },
         { text: "I repeat, will the real Slim Shady please stand up?", isPunchline: false, theme: 'fame' },
         { text: "We're gonna have a problem here", isPunchline: false, theme: 'controversy' },
-        { text: "Y'all act like you never seen a white person before", isPunchline: true, theme: 'controversy' },
-        { text: "Jaws all on the floor like Pam like Tommy just burst in the door", isPunchline: true, theme: 'humor' },
-        { text: "And started whooping her behind worse than before", isPunchline: false, theme: 'controversy' }
+        { text: "Y'all act like you never seen a white person before", isPunchline: true, theme: 'controversy' }
       ]
     },
     {
       id: '3',
+      title: 'Without Me',
+      album: 'The Eminem Show',
+      year: 2002,
+      themes: ['humor', 'fame', 'controversy'],
+      spotifyId: '7EXGAGgUXtLCaJZOJAgisQ',
+      lyrics: [
+        { text: "Guess who's back, back again", isPunchline: false, theme: 'fame' },
+        { text: "Shady's back, tell a friend", isPunchline: true, theme: 'fame' },
+        { text: "Now this looks like a job for me", isPunchline: true, theme: 'humor' },
+        { text: "So everybody, just follow me", isPunchline: false, theme: 'fame' }
+      ]
+    },
+    {
+      id: '4',
       title: 'Stan',
       album: 'The Marshall Mathers LP',
       year: 2000,
       themes: ['obsession', 'mental health', 'fame'],
+      spotifyId: '3UmaczJpikHgJFyBTAJVoz',
       lyrics: [
         { text: "Dear Slim, I wrote you but still ain't calling", isPunchline: false, theme: 'obsession' },
         { text: "I left my cell, my pager, and my home phone at the bottom", isPunchline: false, theme: 'obsession' },
         { text: "I sent two letters back in autumn, you must not-a got 'em", isPunchline: false, theme: 'obsession' },
-        { text: "There probably was a problem at the post office or something", isPunchline: false, theme: 'obsession' },
-        { text: "Sometimes I scribble addresses too sloppy when I jot 'em", isPunchline: true, theme: 'mental health' }
+        { text: "There probably was a problem at the post office or something", isPunchline: false, theme: 'obsession' }
+      ]
+    },
+    {
+      id: '5',
+      title: 'Not Afraid',
+      album: 'Recovery',
+      year: 2010,
+      themes: ['recovery', 'determination', 'motivation'],
+      spotifyId: '2iuZHL9vk9eC3DQEKMjfGO',
+      lyrics: [
+        { text: "I'm not afraid to take a stand", isPunchline: true, theme: 'determination' },
+        { text: "Everybody come take my hand", isPunchline: false, theme: 'motivation' },
+        { text: "We'll walk this road together, through the storm", isPunchline: false, theme: 'recovery' },
+        { text: "Whatever weather, cold or warm", isPunchline: false, theme: 'determination' }
       ]
     }
   ];
 
-  const allThemes = ['motivation', 'struggle', 'determination', 'controversy', 'humor', 'fame', 'obsession', 'mental health'];
+  const allThemes = ['motivation', 'struggle', 'determination', 'controversy', 'humor', 'fame', 'obsession', 'mental health', 'recovery'];
 
   const filteredSongs = songs.filter(song => 
     song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -171,8 +199,18 @@ const Lyrics = () => {
                   ))}
                 </div>
 
-                <Button className="w-full bg-em-red hover:bg-em-red/80">
+                <Button className="w-full bg-em-red hover:bg-em-red/80 mb-2">
                   View Lyrics
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="w-full border-em-red text-em-red hover:bg-em-red hover:text-white"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(`https://open.spotify.com/track/${song.spotifyId}`, '_blank');
+                  }}
+                >
+                  🎵 Listen on Spotify
                 </Button>
               </div>
             </Card>
@@ -214,14 +252,14 @@ const Lyrics = () => {
                   </div>
                 </div>
 
-                <div className="bg-em-dark p-6 rounded-lg">
+                <div className="bg-em-dark p-6 rounded-lg mb-6">
                   <div className="space-y-3">
                     {getFilteredLyrics(selectedSong.lyrics).map((line, index) => (
                       <div 
                         key={index}
                         className={`text-lg leading-relaxed transition-all duration-300 ${
                           showPunchlines && line.isPunchline 
-                            ? 'text-em-red font-bold text-xl neon-glow' 
+                            ? 'text-em-red font-bold text-xl animate-pulse' 
                             : 'text-gray-300'
                         } ${
                           selectedTheme && line.theme === selectedTheme 
@@ -243,10 +281,34 @@ const Lyrics = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 text-center">
-                  <Button className="bg-em-red hover:bg-em-red/80">
-                    Listen on Spotify
+                <div className="text-center space-x-4">
+                  <Button 
+                    className="bg-em-red hover:bg-em-red/80"
+                    onClick={() => window.open(`https://open.spotify.com/track/${selectedSong.spotifyId}`, '_blank')}
+                  >
+                    🎵 Listen on Spotify
                   </Button>
+                  <Button 
+                    variant="outline" 
+                    className="border-em-red text-em-red hover:bg-em-red hover:text-white"
+                  >
+                    Share Lyrics
+                  </Button>
+                </div>
+
+                {/* Spotify Embed */}
+                <div className="mt-6">
+                  <div className="bg-em-dark rounded-lg p-4">
+                    <iframe 
+                      src={`https://open.spotify.com/embed/track/${selectedSong.spotifyId}?utm_source=generator&theme=0`}
+                      width="100%" 
+                      height="152" 
+                      frameBorder="0" 
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                      loading="lazy"
+                      className="rounded-lg"
+                    ></iframe>
+                  </div>
                 </div>
               </div>
             </Card>
