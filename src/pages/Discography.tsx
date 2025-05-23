@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -14,6 +15,7 @@ interface Album {
   genre: string;
   rating: number;
   highlights: string[];
+  slug: string;
 }
 
 const Discography = () => {
@@ -29,7 +31,8 @@ const Discography = () => {
       tracks: 20,
       genre: 'Hip Hop',
       rating: 9.2,
-      highlights: ['My Name Is', 'Guilty Conscience', 'Role Model']
+      highlights: ['My Name Is', 'Guilty Conscience', 'Role Model'],
+      slug: 'slim-shady-lp'
     },
     {
       id: '2',
@@ -40,7 +43,8 @@ const Discography = () => {
       tracks: 18,
       genre: 'Hip Hop',
       rating: 9.8,
-      highlights: ['The Real Slim Shady', 'The Way I Am', 'Stan']
+      highlights: ['The Real Slim Shady', 'The Way I Am', 'Stan'],
+      slug: 'marshall-mathers-lp'
     },
     {
       id: '3',
@@ -51,7 +55,8 @@ const Discography = () => {
       tracks: 20,
       genre: 'Hip Hop',
       rating: 9.5,
-      highlights: ['Without Me', 'Lose Yourself', 'Cleanin Out My Closet']
+      highlights: ['Without Me', 'Lose Yourself', 'Cleanin Out My Closet'],
+      slug: 'eminem-show'
     },
     {
       id: '4',
@@ -62,7 +67,8 @@ const Discography = () => {
       tracks: 17,
       genre: 'Hip Hop',
       rating: 8.7,
-      highlights: ['Not Afraid', 'Love The Way You Lie', 'Space Bound']
+      highlights: ['Not Afraid', 'Love The Way You Lie', 'Space Bound'],
+      slug: 'recovery'
     },
     {
       id: '5',
@@ -73,7 +79,8 @@ const Discography = () => {
       tracks: 16,
       genre: 'Hip Hop',
       rating: 8.9,
-      highlights: ['Rap God', 'The Monster', 'Berzerk']
+      highlights: ['Rap God', 'The Monster', 'Berzerk'],
+      slug: 'marshall-mathers-lp-2'
     },
     {
       id: '6',
@@ -84,7 +91,8 @@ const Discography = () => {
       tracks: 20,
       genre: 'Hip Hop',
       rating: 8.8,
-      highlights: ['Godzilla', 'Darkness', 'Unaccommodating']
+      highlights: ['Godzilla', 'Darkness', 'Unaccommodating'],
+      slug: 'music-to-be-murdered-by'
     }
   ];
 
@@ -103,7 +111,6 @@ const Discography = () => {
             <Card 
               key={album.id}
               className="bg-em-gray border-em-red/20 hover:border-em-red transition-all duration-300 cursor-pointer group overflow-hidden"
-              onClick={() => setSelectedAlbum(album)}
             >
               <div className="p-6">
                 <div className="text-center mb-4">
@@ -130,15 +137,23 @@ const Discography = () => {
                   {album.description}
                 </p>
 
-                <Button 
-                  className="w-full mt-4 bg-em-red hover:bg-em-red/80"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedAlbum(album);
-                  }}
-                >
-                  View Details
-                </Button>
+                <div className="mt-4 space-y-2">
+                  <Button 
+                    asChild
+                    className="w-full bg-em-red hover:bg-em-red/80"
+                  >
+                    <Link to={`/discography/${album.slug}`}>
+                      View Full Album
+                    </Link>
+                  </Button>
+                  <Button 
+                    onClick={() => setSelectedAlbum(album)}
+                    variant="outline" 
+                    className="w-full border-em-red text-em-red hover:bg-em-red hover:text-white"
+                  >
+                    Quick Preview
+                  </Button>
+                </div>
               </div>
             </Card>
           ))}
@@ -197,12 +212,14 @@ const Discography = () => {
                   </div>
                 </div>
 
-                <div className="text-center">
-                  <Button className="bg-em-red hover:bg-em-red/80 mr-4">
-                    Listen on Spotify
+                <div className="text-center space-x-4">
+                  <Button asChild className="bg-em-red hover:bg-em-red/80">
+                    <Link to={`/discography/${selectedAlbum.slug}`}>
+                      Full Album Details
+                    </Link>
                   </Button>
                   <Button variant="outline" className="border-em-red text-em-red hover:bg-em-red hover:text-white">
-                    Apple Music
+                    Listen on Spotify
                   </Button>
                 </div>
               </div>
@@ -227,15 +244,17 @@ const Discography = () => {
                 }`}
               >
                 <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
-                  <Card className="bg-em-gray border-em-red/20 p-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="text-3xl">{album.cover}</div>
-                      <div>
-                        <h3 className="text-lg font-bold text-white">{album.title}</h3>
-                        <p className="text-em-red font-semibold">{album.year}</p>
-                        <p className="text-gray-400 text-sm">{album.tracks} tracks</p>
+                  <Card className="bg-em-gray border-em-red/20 p-4 hover:border-em-red transition-colors cursor-pointer">
+                    <Link to={`/discography/${album.slug}`} className="block">
+                      <div className="flex items-center space-x-3">
+                        <div className="text-3xl">{album.cover}</div>
+                        <div>
+                          <h3 className="text-lg font-bold text-white hover:text-em-red transition-colors">{album.title}</h3>
+                          <p className="text-em-red font-semibold">{album.year}</p>
+                          <p className="text-gray-400 text-sm">{album.tracks} tracks</p>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </Card>
                 </div>
                 

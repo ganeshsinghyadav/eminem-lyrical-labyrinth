@@ -7,11 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Discography from "./pages/Discography";
+import AlbumDetail from "./pages/AlbumDetail";
 import Lyrics from "./pages/Lyrics";
 import EasterEggs from "./pages/EasterEggs";
 import Quiz from "./pages/Quiz";
 import Legacy from "./pages/Legacy";
 import NotFound from "./pages/NotFound";
+import MusicPlayer from "./components/MusicPlayer";
+import BackToTop from "./components/BackToTop";
 
 const queryClient = new QueryClient();
 
@@ -26,12 +29,15 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/discography" element={<Discography />} />
+            <Route path="/discography/:albumId" element={<AlbumDetail />} />
             <Route path="/lyrics" element={<Lyrics />} />
             <Route path="/easter-eggs" element={<EasterEggs />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/legacy" element={<Legacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <MusicPlayer />
+          <BackToTop />
         </div>
       </BrowserRouter>
     </TooltipProvider>

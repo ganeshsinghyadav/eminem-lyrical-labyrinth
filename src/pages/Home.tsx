@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -49,7 +48,7 @@ const Home = () => {
 
           <div className="space-y-4 md:space-y-0 md:space-x-4 md:flex md:justify-center">
             <Button asChild size="lg" className="bg-em-red hover:bg-em-red/80 text-white font-bold px-8 py-3 text-lg">
-              <Link to="/discography">Explore the Legacy</Link>
+              <Link to="/legacy">Explore the Legacy</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-em-red text-em-red hover:bg-em-red hover:text-white font-bold px-8 py-3 text-lg">
               <Link to="/lyrics">Lyrical Genius</Link>
