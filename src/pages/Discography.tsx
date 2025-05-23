@@ -113,48 +113,70 @@ const Discography = () => {
           <p className="text-xl text-gray-400">The evolution of a rap god</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {albums.map((album) => (
             <Card 
               key={album.id}
-              className="bg-em-gray border-em-red/20 hover:border-em-red transition-all duration-300 cursor-pointer group overflow-hidden"
+              className="bg-em-gray border-em-red/20 hover:border-em-red transition-all duration-300 overflow-hidden"
             >
-              <div className="p-6">
-                <div className="text-center mb-4">
-                  <div className="w-48 h-48 mx-auto mb-4 rounded-lg overflow-hidden shadow-lg group-hover:scale-105 transition-transform duration-300">
+              <div className="p-8">
+                {/* Album Header */}
+                <div className="text-center mb-6">
+                  <h3 className="text-3xl font-bold text-white graffiti-text mb-2">
+                    {album.title}
+                  </h3>
+                  <p className="text-2xl text-em-red font-semibold mb-4">{album.year}</p>
+                </div>
+
+                {/* Album Cover */}
+                <div className="flex justify-center mb-6">
+                  <div className="w-64 h-64 rounded-lg overflow-hidden shadow-2xl group-hover:scale-105 transition-transform duration-300">
                     <img 
                       src={album.cover} 
                       alt={album.title}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-em-red transition-colors">
-                    {album.title}
-                  </h3>
-                  <p className="text-em-red font-semibold">{album.year}</p>
                 </div>
 
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm text-gray-400">
-                    <span>Tracks: {album.tracks}</span>
-                    <span>Rating: {album.rating}/10</span>
+                {/* Album Info */}
+                <div className="space-y-4 mb-6">
+                  <div className="flex justify-center space-x-4">
+                    <Badge variant="secondary" className="bg-em-red/20 text-em-red">
+                      {album.genre}
+                    </Badge>
+                    <Badge variant="outline" className="border-em-red text-em-red">
+                      {album.rating}/10
+                    </Badge>
+                    <Badge variant="outline" className="border-em-red text-em-red">
+                      {album.tracks} tracks
+                    </Badge>
                   </div>
-                  <Badge variant="secondary" className="bg-em-red/20 text-em-red">
-                    {album.genre}
-                  </Badge>
+
+                  <p className="text-gray-300 text-center text-lg">
+                    {album.description}
+                  </p>
+
+                  <div className="text-center">
+                    <h4 className="text-lg font-semibold text-white mb-3">Key Tracks:</h4>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {album.highlights.map((track, index) => (
+                        <Badge key={index} className="bg-em-red/10 text-em-red border border-em-red/20">
+                          {track}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <p className="text-gray-300 mt-4 text-sm line-clamp-2">
-                  {album.description}
-                </p>
-
-                <div className="mt-4 space-y-2">
+                {/* Action Buttons */}
+                <div className="space-y-3 mb-8">
                   <Button 
                     asChild
-                    className="w-full bg-em-red hover:bg-em-red/80"
+                    className="w-full bg-em-red hover:bg-em-red/80 text-lg font-semibold"
                   >
                     <Link to={`/discography/${album.slug}`}>
-                      View Full Album
+                      📖 View Full Album Details
                     </Link>
                   </Button>
                   <Button 
@@ -162,8 +184,32 @@ const Discography = () => {
                     variant="outline" 
                     className="w-full border-em-red text-em-red hover:bg-em-red hover:text-white"
                   >
-                    Quick Preview
+                    👁️ Quick Preview
                   </Button>
+                </div>
+
+                {/* Spotify Embed Section */}
+                <div className="border-t border-em-red/20 pt-6">
+                  <div className="flex items-center justify-center mb-4">
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-em-red to-transparent"></div>
+                    <h4 className="text-xl font-bold text-white mx-4 flex items-center">
+                      🎵 Listen Now on Spotify
+                    </h4>
+                    <div className="flex-1 h-px bg-gradient-to-r from-em-red via-em-red to-transparent"></div>
+                  </div>
+                  
+                  <div className="bg-em-dark rounded-lg p-4 shadow-inner border border-em-red/10">
+                    <iframe 
+                      src={`https://open.spotify.com/embed/album/${album.spotifyId}?utm_source=generator&theme=0`}
+                      width="100%" 
+                      height="352" 
+                      frameBorder="0" 
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                      loading="lazy"
+                      className="rounded-lg"
+                      title={`${album.title} Spotify Player`}
+                    ></iframe>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -230,7 +276,7 @@ const Discography = () => {
 
                   {/* Spotify Embed */}
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold text-white mb-3">Listen Now:</h3>
+                    <h3 className="text-xl font-bold text-white mb-3">🎵 Listen Now:</h3>
                     <div className="bg-em-dark rounded-lg p-4">
                       <iframe 
                         src={`https://open.spotify.com/embed/album/${selectedAlbum.spotifyId}?utm_source=generator&theme=0`}
@@ -240,6 +286,7 @@ const Discography = () => {
                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                         loading="lazy"
                         className="rounded-lg"
+                        title={`${selectedAlbum.title} Spotify Player`}
                       ></iframe>
                     </div>
                   </div>
